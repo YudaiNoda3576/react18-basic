@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import ColorfulMessage from "./components/ColorfulMessage";
 
@@ -17,16 +18,14 @@ const App = () => {
         setFaceShowFlag(!faceShowFlag);
     }
     useEffect(() => {
-        console.log("useEffect");
-    });
-
-    if(num > 0 ) {
-        if (num % 3 === 0) {
-            faceShowFlag || setFaceShowFlag(true);
-        } else {
-            faceShowFlag && setFaceShowFlag(false);
+        if( num > 0 ) {
+            if (num % 3 === 0) {
+                faceShowFlag || setFaceShowFlag(true);
+            } else {
+                faceShowFlag && setFaceShowFlag(false);
+            }
         }
-    }
+    },[num]);
 
     return (
         <>
@@ -36,6 +35,7 @@ const App = () => {
         <ColorfulMessage color="pink">Good morning!</ColorfulMessage>
         <p>{num}</p>
         <button onClick={() => setNume(num + 1)}>Count up</button>
+        <br></br>
         { faceShowFlag && <p>😇</p>}
         <button onClick={switchFaceShowFlag}>on/off</button>
         </>
